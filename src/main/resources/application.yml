@@ -1,0 +1,10 @@
+spring:
+  config:
+    import: 'optional:file:.env[.properties]'
+  datasource:
+    url: 'jdbc:postgresql://localhost:2000/${POSTGRES_DB}'
+    username: '${POSTGRES_USER}'
+    password: '${POSTGRES_PASSWORD}'
+server:
+  servlet:
+    context-path: /api/v1
