@@ -18,6 +18,7 @@ public class RectangleServiceImpl implements AbstractShapeServiceInterface {
     @Override
     public Shape create(List<Double> parameters) {
         Rectangle rectangle = new Rectangle();
+        rectangle.setType(rectangle.getClass().getSimpleName());
         rectangle.setLength(parameters.get(0));
         rectangle.setWidth(parameters.get(1));
         return shapeRepository.save(rectangle);

@@ -18,6 +18,7 @@ public class CircleServiceImpl implements AbstractShapeServiceInterface {
     @Override
     public Shape create(List<Double> parameters) {
         Circle circle = new Circle();
+        circle.setType(circle.getClass().getSimpleName());
         circle.setRadius(parameters.get(0));
         return shapeRepository.save(circle);
     }

@@ -17,6 +17,7 @@ public class SquareServiceImpl implements AbstractShapeServiceInterface {
 
     public Shape create(List<Double> parameters) {
         Square square = new Square();
+        square.setType(square.getClass().getSimpleName());
         square.setSide(parameters.get(0));
         return shapeRepository.save(square);
     }

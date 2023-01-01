@@ -22,9 +22,9 @@ public class ShapeControllerImpl implements ShapeController {
     public ResponseEntity<Shape> create(CreateShapeDto createShapeDto) {
         //TODO change switch
         return switch (createShapeDto.getType().toLowerCase()) {
-            case "rectangle" -> ResponseEntity.ok(rectangleService.create(createShapeDto.getParameters()));
-            case "square" -> ResponseEntity.ok(squareService.create(createShapeDto.getParameters()));
-            case "circle" -> ResponseEntity.ok(circleService.create(createShapeDto.getParameters()));
+            case "rectangle" -> ResponseEntity.ok().body(rectangleService.create(createShapeDto.getParameters()));
+            case "square" -> ResponseEntity.ok().body(squareService.create(createShapeDto.getParameters()));
+            case "circle" -> ResponseEntity.ok().body(circleService.create(createShapeDto.getParameters()));
             default -> ResponseEntity.badRequest().build();
         };
     }
