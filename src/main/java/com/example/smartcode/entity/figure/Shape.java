@@ -20,6 +20,10 @@ public abstract class Shape extends AbstractEntity {
 
     @Column(nullable = false)
     @Setter
+    protected String type;
+
+    @Column(nullable = false)
+    @Setter
     protected double area;
 
     @Column(nullable = false)
