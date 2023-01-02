@@ -1,7 +1,6 @@
 package com.example.smartcode.entity.figure;
 
 import com.example.smartcode.common.AbstractEntity;
-import com.example.smartcode.entity.Account;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
