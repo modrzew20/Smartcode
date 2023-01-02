@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @Getter
 @MappedSuperclass
-public abstract class AbstractEntity {
+public abstract class AbstractEntity implements Taggable {
 
     @Id
     @GeneratedValue
@@ -19,4 +19,8 @@ public abstract class AbstractEntity {
     @Version
     private Long version;
 
+    @Override
+    public String generateETagMessage() {
+        return String.format("%s-%s-%s", id, version, getClass().getSimpleName());
+    }
 }
