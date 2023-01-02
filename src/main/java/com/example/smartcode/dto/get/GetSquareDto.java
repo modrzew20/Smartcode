@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class GetSquareDto extends GetShapeDto{
+public class GetSquareDto extends GetShapeDto {
 
     private double width;
 

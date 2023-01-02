@@ -1,6 +1,5 @@
 package com.example.smartcode.mapper.impl;
 
-import com.example.smartcode.dto.CreateUserDto;
 import com.example.smartcode.dto.get.GetUserDto;
 import com.example.smartcode.entity.Account;
 import com.example.smartcode.mapper.UserMapper;

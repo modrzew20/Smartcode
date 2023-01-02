@@ -6,6 +6,7 @@ import com.example.smartcode.exception.InvalidEtagException;
 public interface EtagGenerator {
 
     String generateETag(Taggable taggable);
+
     void verifyETag(Taggable entity) throws InvalidEtagException;
 
 }

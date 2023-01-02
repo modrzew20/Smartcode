@@ -7,13 +7,13 @@ spring:
     password: '${POSTGRES_PASSWORD}'
   jpa:
     properties:
-#      jakarta:
-#        persistence:
-#          schema-generation:
-#            scripts:
-#              create-source: metadata
-#              action: create
-#              create-target: src\main\resources\database\01-schema.sql
+      #      jakarta:
+      #        persistence:
+      #          schema-generation:
+      #            scripts:
+      #              create-source: metadata
+      #              action: create
+      #              create-target: src\main\resources\database\01-schema.sql
       hibernate:
         jdbc:
           lob:

@@ -16,7 +16,8 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor
-@Getter @Setter
+@Getter
+@Setter
 public class Account extends AbstractEntity {
 
     @Column(nullable = false)

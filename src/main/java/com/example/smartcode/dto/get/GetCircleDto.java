@@ -4,9 +4,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
-public class GetCircleDto extends GetShapeDto{
+public class GetCircleDto extends GetShapeDto {
 
     private double radius;
 }

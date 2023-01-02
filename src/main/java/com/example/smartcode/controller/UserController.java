@@ -4,7 +4,6 @@ import com.example.smartcode.dto.CreateUserDto;
 import com.example.smartcode.dto.PaginationParam;
 import com.example.smartcode.dto.get.GetUserDto;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;

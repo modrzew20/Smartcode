@@ -7,7 +7,8 @@ import lombok.Setter;
 
 @Entity
 @NoArgsConstructor
-@Getter @Setter
+@Getter
+@Setter
 public class Circle extends Shape {
 
     private double radius;

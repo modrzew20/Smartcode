@@ -10,8 +10,8 @@ import org.springframework.plugin.core.config.EnablePluginRegistries;
 @EnablePluginRegistries({ShapeService.class, ShapeMapper.class})
 public class SmartcodeApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SmartcodeApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SmartcodeApplication.class, args);
+    }
 
 }

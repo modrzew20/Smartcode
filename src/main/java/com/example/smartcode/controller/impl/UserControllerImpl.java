@@ -5,6 +5,7 @@ import com.example.smartcode.dto.CreateUserDto;
 import com.example.smartcode.dto.PaginationParam;
 import com.example.smartcode.dto.get.GetUserDto;
 import com.example.smartcode.exception.LoginIsBusyException;
+import com.example.smartcode.exception.RoleNotFoundException;
 import com.example.smartcode.mapper.UserMapper;
 import com.example.smartcode.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -37,6 +38,8 @@ public class UserControllerImpl implements UserController {
                     .body(userMapper.mapAccountToGetUserDto(userService.create(createUserDto)));
         } catch (LoginIsBusyException e) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
+        } catch (RoleNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
     }
 }

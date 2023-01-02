@@ -39,7 +39,7 @@ public class EtagGeneratorImpl implements EtagGenerator {
     @Override
     public void verifyETag(Taggable entity) throws InvalidEtagException {
         String eTag = request.getHeader("If-Match");
-        if(!generateETag(entity).equals(eTag)) {
+        if (!generateETag(entity).equals(eTag)) {
             throw new InvalidEtagException();
         }
     }
