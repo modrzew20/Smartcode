@@ -7,7 +7,7 @@ import org.springframework.plugin.core.Plugin;
 
 import java.util.List;
 
-public interface AbstractShapeServiceInterface extends Plugin<String> {
+public interface ShapeService extends Plugin<String> {
 
     Shape create(List<Double> parameters) throws NegativeParametersException, InvalidAmountOfParametersException;
 

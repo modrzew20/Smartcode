@@ -10,36 +10,33 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Getter
+@Getter @Setter
 @NoArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 public abstract class Shape extends AbstractEntity {
 
     @Column(nullable = false)
-    @Setter
     protected String type;
 
     @Column(nullable = false)
-    @Setter
     protected double area;
 
     @Column(nullable = false)
-    @Setter
     protected double perimeter;
 
-    @ManyToOne
     @CreatedBy
-    private Account createdBy;
+    private String createdBy;
 
     @CreatedDate
     private LocalDateTime createdAt;
 
-    @ManyToOne
     @LastModifiedBy
-    private Account lastModifiedBy;
+    private String lastModifiedBy;
 
     @LastModifiedDate
     private LocalDateTime lastModifiedAt;
@@ -48,6 +45,8 @@ public abstract class Shape extends AbstractEntity {
     private void setAreaAndPerimeter() {
         setArea(calculateArea());
         setPerimeter(calculatePerimeter());
+
+
     }
 
     protected abstract double calculateArea();
