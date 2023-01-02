@@ -21,4 +21,10 @@ public class SquareServiceImpl implements AbstractShapeServiceInterface {
         square.setSide(parameters.get(0));
         return shapeRepository.save(square);
     }
+
+
+    @Override
+    public boolean supports(String delimiter) {
+        return delimiter.equals("square");
+    }
 }

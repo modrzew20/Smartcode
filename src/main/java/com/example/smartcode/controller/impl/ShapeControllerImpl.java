@@ -3,29 +3,27 @@ package com.example.smartcode.controller.impl;
 import com.example.smartcode.controller.ShapeController;
 import com.example.smartcode.dto.CreateShapeDto;
 import com.example.smartcode.entity.figure.Shape;
-import com.example.smartcode.service.impl.CircleServiceImpl;
-import com.example.smartcode.service.impl.RectangleServiceImpl;
-import com.example.smartcode.service.impl.SquareServiceImpl;
+import com.example.smartcode.service.AbstractShapeServiceInterface;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.plugin.core.PluginRegistry;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
 public class ShapeControllerImpl implements ShapeController {
 
-    private final RectangleServiceImpl rectangleService;
-    private final SquareServiceImpl squareService;
-    private final CircleServiceImpl circleService;
+    private final PluginRegistry<AbstractShapeServiceInterface,String> pluginRegistry;
+
 
     @Override
     public ResponseEntity<Shape> create(CreateShapeDto createShapeDto) {
-        //TODO change switch
-        return switch (createShapeDto.getType().toLowerCase()) {
-            case "rectangle" -> ResponseEntity.ok().body(rectangleService.create(createShapeDto.getParameters()));
-            case "square" -> ResponseEntity.ok().body(squareService.create(createShapeDto.getParameters()));
-            case "circle" -> ResponseEntity.ok().body(circleService.create(createShapeDto.getParameters()));
-            default -> ResponseEntity.badRequest().build();
-        };
+        AbstractShapeServiceInterface shapeService = pluginRegistry.getPluginFor(createShapeDto.getType())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST,"Shape type is not supported"));
+        return ResponseEntity.ok().body(shapeService.create(createShapeDto.getParameters()));
     }
 }

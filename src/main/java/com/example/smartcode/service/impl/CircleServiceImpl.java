@@ -22,4 +22,9 @@ public class CircleServiceImpl implements AbstractShapeServiceInterface {
         circle.setRadius(parameters.get(0));
         return shapeRepository.save(circle);
     }
+
+    @Override
+    public boolean supports(String delimiter) {
+        return delimiter.equals("circle");
+    }
 }

@@ -24,4 +24,9 @@ public class RectangleServiceImpl implements AbstractShapeServiceInterface {
         return shapeRepository.save(rectangle);
     }
 
+
+    @Override
+    public boolean supports(String delimiter) {
+        return delimiter.equals("rectangle");
+    }
 }

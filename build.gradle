@@ -30,6 +30,8 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	//testImplementation 'org.springframework.security:spring-security-test'
 	implementation "org.liquibase:liquibase-core"
+	implementation 'org.springframework.plugin:spring-plugin-core:3.0.0'
+	implementation 'org.springframework.plugin:spring-plugin-metadata:3.0.0'
 }
 
 tasks.named('test') {
