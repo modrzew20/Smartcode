@@ -1,7 +1,10 @@
 package com.example.smartcode.service.impl;
 
+import com.example.smartcode.common.AbstractShapeService;
 import com.example.smartcode.entity.figure.Shape;
 import com.example.smartcode.entity.figure.Square;
+import com.example.smartcode.exception.InvalidAmountOfParametersException;
+import com.example.smartcode.exception.NegativeParametersException;
 import com.example.smartcode.repository.ShapeRepository;
 import com.example.smartcode.service.AbstractShapeServiceInterface;
 import lombok.RequiredArgsConstructor;
@@ -11,11 +14,14 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class SquareServiceImpl implements AbstractShapeServiceInterface {
+public class SquareServiceImpl extends AbstractShapeService implements AbstractShapeServiceInterface {
 
     private final ShapeRepository shapeRepository;
 
-    public Shape create(List<Double> parameters) {
+    public Shape create(List<Double> parameters) throws NegativeParametersException, InvalidAmountOfParametersException {
+        throwsIfInvalidAmountOfParameters(parameters, 1);
+        throwsIfNegativeParameters(parameters);
+
         Square square = new Square();
         square.setType(square.getClass().getSimpleName());
         square.setSide(parameters.get(0));
