@@ -48,8 +48,6 @@ public abstract class Shape extends AbstractEntity {
     private void setAreaAndPerimeter() {
         setArea(calculateArea());
         setPerimeter(calculatePerimeter());
-
-
     }
 
     protected abstract double calculateArea();

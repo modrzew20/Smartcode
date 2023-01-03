@@ -11,15 +11,15 @@ import lombok.Setter;
 @Setter
 public class Square extends Shape {
 
-    private double side;
+    private double width;
 
     @Override
     protected double calculateArea() {
-        return side * side;
+        return width * width;
     }
 
     @Override
     protected double calculatePerimeter() {
-        return 4 * side;
+        return 4 * width;
     }
 }

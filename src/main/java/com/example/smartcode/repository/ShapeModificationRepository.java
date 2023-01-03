@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
 
-public interface ChangeRepository extends JpaRepository<ShapeModification, UUID> {
+public interface ShapeModificationRepository extends JpaRepository<ShapeModification, UUID> {
 }

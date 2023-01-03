@@ -21,7 +21,7 @@ public class SquareMapperImpl implements ShapeMapper {
         dto.setLastModifiedAt(shape.getLastModifiedAt());
         dto.setLastModifiedBy(shape.getLastModifiedBy());
         dto.setType(shape.getType());
-        dto.setWidth(((Square) shape).getSide());
+        dto.setWidth(((Square) shape).getWidth());
         return dto;
     }
 

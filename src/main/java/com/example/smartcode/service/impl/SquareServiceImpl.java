@@ -6,7 +6,7 @@ import com.example.smartcode.entity.figure.Square;
 import com.example.smartcode.exception.InvalidAmountOfParametersException;
 import com.example.smartcode.exception.NegativeParametersException;
 import com.example.smartcode.repository.ShapeRepository;
-import com.example.smartcode.service.ShapeService;
+import com.example.smartcode.service.ShapeServiceStrategy;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class SquareServiceImpl extends AbstractShapeService implements ShapeService {
+public class SquareServiceImpl extends AbstractShapeService implements ShapeServiceStrategy {
 
     private final ShapeRepository shapeRepository;
 
@@ -24,7 +24,7 @@ public class SquareServiceImpl extends AbstractShapeService implements ShapeServ
 
         Square square = new Square();
         square.setType(square.getClass().getSimpleName());
-        square.setSide(parameters.get(0));
+        square.setWidth(parameters.get(0));
         return shapeRepository.save(square);
     }
 
