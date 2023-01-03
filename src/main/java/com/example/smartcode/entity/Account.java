@@ -10,15 +10,19 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
 @Getter
 @Setter
 public class Account extends AbstractEntity {
+
+    private static final String PREFIX = "ROLE_";
 
     @Column(nullable = false)
     private String firstName;
@@ -38,4 +42,8 @@ public class Account extends AbstractEntity {
     @OneToMany
     @Setter(AccessLevel.NONE)
     private List<Shape> figures = new ArrayList<>();
+
+    public Set<SimpleGrantedAuthority> getGrantedAuthorities() {
+        return Set.of(new SimpleGrantedAuthority(PREFIX + role.getName()));
+    }
 }

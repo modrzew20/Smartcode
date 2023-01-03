@@ -11,13 +11,14 @@ import com.example.smartcode.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    //    private final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
 
@@ -36,7 +37,7 @@ public class UserServiceImpl implements UserService {
     private Account getAccount(CreateUserDto entity, Role role) {
         Account account = new Account();
         account.setLogin(entity.getLogin());
-        account.setPassword(entity.getPassword());
+        account.setPassword(passwordEncoder.encode(entity.getPassword()));
         account.setRole(role);
         account.setFirstName(entity.getFirstName());
         account.setLastName(entity.getLastName());
