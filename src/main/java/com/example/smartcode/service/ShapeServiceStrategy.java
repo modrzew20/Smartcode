@@ -11,5 +11,4 @@ public interface ShapeServiceStrategy extends Plugin<String> {
 
     Shape create(List<Double> parameters) throws NegativeParametersException, InvalidAmountOfParametersException;
 
-
 }

@@ -1,7 +1,7 @@
 package com.example.smartcode.service.impl;
 
 import com.example.smartcode.common.AbstractShapeService;
-import com.example.smartcode.entity.figure.Circle;
+import com.example.smartcode.entity.figure.Rectangle;
 import com.example.smartcode.entity.figure.Shape;
 import com.example.smartcode.exception.InvalidAmountOfParametersException;
 import com.example.smartcode.exception.NegativeParametersException;
@@ -14,23 +14,24 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class CircleServiceImpl extends AbstractShapeService implements ShapeServiceStrategy {
+public class RectangleServiceStrategyImpl extends AbstractShapeService implements ShapeServiceStrategy {
 
     private final ShapeRepository shapeRepository;
 
     @Override
-    public Shape create(List<Double> parameters) throws InvalidAmountOfParametersException, NegativeParametersException {
-        throwsIfInvalidAmountOfParameters(parameters, 1);
+    public Shape create(List<Double> parameters) throws NegativeParametersException, InvalidAmountOfParametersException {
+        throwsIfInvalidAmountOfParameters(parameters, 2);
         throwsIfNegativeParameters(parameters);
 
-        Circle circle = new Circle();
-        circle.setType(circle.getClass().getSimpleName());
-        circle.setRadius(parameters.get(0));
-        return shapeRepository.save(circle);
+        Rectangle rectangle = new Rectangle();
+        rectangle.setType(rectangle.getClass().getSimpleName());
+        rectangle.setLength(parameters.get(0));
+        rectangle.setWidth(parameters.get(1));
+        return shapeRepository.save(rectangle);
     }
 
     @Override
     public boolean supports(String delimiter) {
-        return delimiter.equals("circle");
+        return delimiter.equals("rectangle");
     }
 }
