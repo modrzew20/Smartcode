@@ -16,11 +16,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-@Entity
+@Entity(name = "users")
 @NoArgsConstructor
 @Getter
 @Setter
-public class Account extends AbstractEntity {
+public class User extends AbstractEntity {
 
     private static final String PREFIX = "ROLE_";
 
