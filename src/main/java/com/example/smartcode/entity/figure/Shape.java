@@ -1,10 +1,9 @@
 package com.example.smartcode.entity.figure;
 
 import com.example.smartcode.common.AbstractEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.PrePersist;
+import com.example.smartcode.entity.Change;
+import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,6 +14,8 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -44,12 +45,14 @@ public abstract class Shape extends AbstractEntity {
     @LastModifiedDate
     private LocalDateTime lastModifiedAt;
 
+    @OneToMany
+    @Setter(AccessLevel.NONE)
+    List<Change> changes = new ArrayList<>();
+
     @PrePersist
     private void setAreaAndPerimeter() {
         setArea(calculateArea());
         setPerimeter(calculatePerimeter());
-
-
     }
 
     protected abstract double calculateArea();
