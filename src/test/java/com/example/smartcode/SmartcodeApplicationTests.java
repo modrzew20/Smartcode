@@ -21,5 +21,6 @@ class SmartcodeApplicationTests {
 		assertThrows(InvalidParameterException.class, () -> shapeRepository.getAll(Map.of("type1", "circle")));
 
 	}
+	//TODO tests
 
 }

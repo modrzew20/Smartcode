@@ -1,6 +1,7 @@
 package com.example.smartcode.controller;
 
 import com.example.smartcode.dto.CreateShapeDto;
+import com.example.smartcode.dto.PutShapeDto;
 import com.example.smartcode.dto.get.GetChangeDto;
 import com.example.smartcode.dto.get.GetShapeDto;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ public interface ShapeController {
     @Secured("ROLE_CREATOR")
     ResponseEntity<GetShapeDto> create(@RequestBody @Validated CreateShapeDto dto);
 
+    //TODO to lowercase, check with date
     @GetMapping
     ResponseEntity<List<GetShapeDto>> getAll(@RequestParam Map<String, String> params);
 
@@ -26,4 +28,7 @@ public interface ShapeController {
     @Secured({"ROLE_CREATOR", "ROLE_ADMIN"})
     ResponseEntity<List<GetChangeDto>> getChanges(@PathVariable("id") UUID id);
 
+    @PutMapping("/{id}")
+    @Secured({"ROLE_CREATOR", "ROLE_ADMIN"})
+    ResponseEntity<GetShapeDto> update(@PathVariable("id") UUID id, @RequestBody @Validated PutShapeDto dto);
 }

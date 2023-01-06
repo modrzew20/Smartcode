@@ -1,8 +1,7 @@
 package com.example.smartcode.service;
 
 import com.example.smartcode.entity.figure.Shape;
-import com.example.smartcode.exception.InvalidParameterException;
-import com.example.smartcode.exception.ShapeNotFoundException;
+import com.example.smartcode.exception.*;
 import org.springframework.security.access.prepost.PostAuthorize;
 
 import java.util.List;
@@ -16,4 +15,6 @@ public interface ShapeService {
     @PostAuthorize("(hasRole('ROLE_CREATOR') && returnObject.createdBy == authentication.name) || hasRole('ROLE_ADMIN')")
     Shape get(UUID id) throws ShapeNotFoundException;
 
+    @PostAuthorize("(hasRole('ROLE_CREATOR') && returnObject.createdBy == authentication.name) || hasRole('ROLE_ADMIN')")
+    Shape update(UUID id, List<Double> parameters) throws ShapeNotFoundException, InvalidAmountOfParametersException, NegativeParametersException, InvalidEtagException;
 }

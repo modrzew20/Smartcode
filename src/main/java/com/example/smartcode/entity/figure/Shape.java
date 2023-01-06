@@ -50,6 +50,7 @@ public abstract class Shape extends AbstractEntity {
     List<Change> changes = new ArrayList<>();
 
     @PrePersist
+    @PreUpdate
     private void setAreaAndPerimeter() {
         setArea(calculateArea());
         setPerimeter(calculatePerimeter());

@@ -2,13 +2,11 @@ package com.example.smartcode.controller.impl;
 
 import com.example.smartcode.controller.ShapeController;
 import com.example.smartcode.dto.CreateShapeDto;
+import com.example.smartcode.dto.PutShapeDto;
 import com.example.smartcode.dto.get.GetChangeDto;
 import com.example.smartcode.dto.get.GetShapeDto;
 import com.example.smartcode.entity.figure.Shape;
-import com.example.smartcode.exception.InvalidAmountOfParametersException;
-import com.example.smartcode.exception.InvalidParameterException;
-import com.example.smartcode.exception.NegativeParametersException;
-import com.example.smartcode.exception.ShapeNotFoundException;
+import com.example.smartcode.exception.*;
 import com.example.smartcode.mapper.ChangeMapper;
 import com.example.smartcode.mapper.ShapeMapper;
 import com.example.smartcode.service.ShapeService;
@@ -65,7 +63,7 @@ public class ShapeControllerImpl implements ShapeController {
             List<Shape> shapes = shapeService.getAll(params);
             List<GetShapeDto> result = new ArrayList<>();
             ShapeMapper shapeMapper;
-            for ( Shape shape : shapes ) {
+            for (Shape shape : shapes) {
                 shapeMapper = pluginMapperRegistry.getPluginFor(shape.getType().toLowerCase())
                         .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, SHAPE_TYPE_NOT_SUPPORTED));
                 result.add(shapeMapper.mapShapeToGetShapeDto(shape));
@@ -82,6 +80,22 @@ public class ShapeControllerImpl implements ShapeController {
             return ResponseEntity.ok(shapeService.get(id).getChanges().stream().map(changeMapper::mapChangeToGetChangesDto).toList());
         } catch (ShapeNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        }
+    }
+
+    @Override
+    public ResponseEntity<GetShapeDto> update(UUID id, PutShapeDto dto) {
+        try {
+            Shape shape = shapeService.update(id, dto.getParameters());
+            ShapeMapper shapeMapper = pluginMapperRegistry.getPluginFor(shape.getType().toLowerCase())
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, SHAPE_TYPE_NOT_SUPPORTED));
+            return ResponseEntity.ok().body(shapeMapper.mapShapeToGetShapeDto(shape));
+        } catch (ShapeNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        } catch (InvalidAmountOfParametersException | NegativeParametersException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        } catch (InvalidEtagException e) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
         }
     }
 }
