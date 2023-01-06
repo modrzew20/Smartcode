@@ -17,6 +17,9 @@ import java.util.Map;
 
 public class ShapeCustomRepositoryImpl implements ShapeCustomRepository {
 
+    private static final String FROM = "From";
+    private static final String TO = "To";
+
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -29,10 +32,10 @@ public class ShapeCustomRepositoryImpl implements ShapeCustomRepository {
 
             List<Predicate> predicates = new ArrayList<>();
             for (Map.Entry<String, String> param : params.entrySet()) {
-                if (param.getKey().contains("To")) {
+                if (param.getKey().contains(TO)) {
                     Predicate predicate = getLessOrEqualPredicate(cb, root, param.getKey(), param.getValue());
                     predicates.add(predicate);
-                } else if (param.getKey().contains("From")) {
+                } else if (param.getKey().contains(FROM)) {
                     Predicate predicate = getGreaterOrEqualPredicate(cb, root, param.getKey(), param.getValue());
                     predicates.add(predicate);
                 } else {
@@ -47,13 +50,13 @@ public class ShapeCustomRepositoryImpl implements ShapeCustomRepository {
     }
 
     private Predicate getLessOrEqualPredicate(CriteriaBuilder cb, Root<Shape> root, String key, String value) {
-        int splitIndex = key.indexOf("To");
+        int splitIndex = key.indexOf(TO);
         String attributeName = key.substring(0, splitIndex);
         return cb.lessThanOrEqualTo(root.get(attributeName), value);
     }
 
     private Predicate getGreaterOrEqualPredicate(CriteriaBuilder cb, Root<Shape> root, String key, String value) {
-        int splitIndex = key.indexOf("From");
+        int splitIndex = key.indexOf(FROM);
         String attributeName = key.substring(0, splitIndex);
         return cb.greaterThanOrEqualTo(root.get(attributeName), value);
     }
