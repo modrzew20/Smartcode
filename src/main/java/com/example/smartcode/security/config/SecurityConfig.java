@@ -43,6 +43,7 @@ public class SecurityConfig {
                 .requestMatchers("/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/users").permitAll()
                 .requestMatchers(HttpMethod.GET, "/users").permitAll()
+                .requestMatchers(HttpMethod.GET, "/shapes").permitAll()
                 .anyRequest()
                 .authenticated();
         return httpSecurity.build();

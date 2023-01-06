@@ -1,7 +1,7 @@
 package com.example.smartcode.mapper.impl;
 
 import com.example.smartcode.dto.get.GetUserDto;
-import com.example.smartcode.entity.Account;
+import com.example.smartcode.entity.User;
 import com.example.smartcode.mapper.UserMapper;
 import org.springframework.stereotype.Component;
 
@@ -9,14 +9,14 @@ import org.springframework.stereotype.Component;
 public class UserMapperImpl implements UserMapper {
 
     @Override
-    public GetUserDto mapAccountToGetUserDto(Account account) {
+    public GetUserDto mapUserToGetUserDto(User user) {
         GetUserDto dto = new GetUserDto();
-        dto.setId(account.getId());
-        dto.setFirstName(account.getFirstName());
-        dto.setLastName(account.getLastName());
-        dto.setLogin(account.getLogin());
-        dto.setRole(account.getRole().getName());
-        dto.setAmountOfFigures(account.getFigures().size());
+        dto.setId(user.getId());
+        dto.setFirstName(user.getFirstName());
+        dto.setLastName(user.getLastName());
+        dto.setLogin(user.getLogin());
+        dto.setRole(user.getRole().getName());
+        dto.setAmountOfFigures(user.getFigures().size());
         return dto;
     }
 }

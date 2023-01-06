@@ -9,6 +9,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @RequestMapping("/shapes")
@@ -17,6 +18,9 @@ public interface ShapeController {
     @PostMapping
     @Secured("ROLE_CREATOR")
     ResponseEntity<GetShapeDto> create(@RequestBody @Validated CreateShapeDto dto);
+
+    @GetMapping
+    ResponseEntity<List<GetShapeDto>> getAll(@RequestParam Map<String, String> params);
 
     @GetMapping("/{id}/changes")
     @Secured({"ROLE_CREATOR", "ROLE_ADMIN"})

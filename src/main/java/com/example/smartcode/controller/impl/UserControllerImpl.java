@@ -27,7 +27,7 @@ public class UserControllerImpl implements UserController {
     public ResponseEntity<Page<GetUserDto>> getAll(PaginationParam paginationParam) {
         return ResponseEntity
                 .ok()
-                .body(userService.getAll(PageRequest.of(paginationParam.getPage(), paginationParam.getSize())).map(userMapper::mapAccountToGetUserDto));
+                .body(userService.getAll(PageRequest.of(paginationParam.getPage(), paginationParam.getSize())).map(userMapper::mapUserToGetUserDto));
     }
 
     @Override
@@ -35,7 +35,7 @@ public class UserControllerImpl implements UserController {
         try {
             return ResponseEntity
                     .status(HttpStatus.CREATED)
-                    .body(userMapper.mapAccountToGetUserDto(userService.create(createUserDto)));
+                    .body(userMapper.mapUserToGetUserDto(userService.create(createUserDto)));
         } catch (LoginIsBusyException e) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
         } catch (RoleNotFoundException e) {

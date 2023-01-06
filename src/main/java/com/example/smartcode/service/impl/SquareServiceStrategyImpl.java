@@ -24,7 +24,7 @@ public class SquareServiceStrategyImpl extends AbstractShapeService implements S
 
         Square square = new Square();
         square.setType(square.getClass().getSimpleName());
-        square.setSide(parameters.get(0));
+        square.setWidth(parameters.get(0));
         return shapeRepository.save(square);
     }
 

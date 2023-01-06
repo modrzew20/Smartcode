@@ -1,8 +1,8 @@
 package com.example.smartcode.service.impl;
 
 import com.example.smartcode.dto.CreateUserDto;
-import com.example.smartcode.entity.Account;
 import com.example.smartcode.entity.Role;
+import com.example.smartcode.entity.User;
 import com.example.smartcode.exception.LoginIsBusyException;
 import com.example.smartcode.exception.RoleNotFoundException;
 import com.example.smartcode.repository.RoleRepository;
@@ -23,25 +23,25 @@ public class UserServiceImpl implements UserService {
     private final RoleRepository roleRepository;
 
     @Override
-    public Page<Account> getAll(Pageable pageable) {
+    public Page<User> getAll(Pageable pageable) {
         return userRepository.findAll(pageable);
     }
 
     @Override
-    public Account create(CreateUserDto entity) throws LoginIsBusyException, RoleNotFoundException {
+    public User create(CreateUserDto entity) throws LoginIsBusyException, RoleNotFoundException {
         throwIfUserExists(entity.getLogin());
         Role role = roleRepository.findById(entity.getRole()).orElseThrow(() -> new RoleNotFoundException(entity.getRole()));
-        return userRepository.save(getAccount(entity, role));
+        return userRepository.save(getUser(entity, role));
     }
 
-    private Account getAccount(CreateUserDto entity, Role role) {
-        Account account = new Account();
-        account.setLogin(entity.getLogin());
-        account.setPassword(passwordEncoder.encode(entity.getPassword()));
-        account.setRole(role);
-        account.setFirstName(entity.getFirstName());
-        account.setLastName(entity.getLastName());
-        return account;
+    private User getUser(CreateUserDto entity, Role role) {
+        User user = new User();
+        user.setLogin(entity.getLogin());
+        user.setPassword(passwordEncoder.encode(entity.getPassword()));
+        user.setRole(role);
+        user.setFirstName(entity.getFirstName());
+        user.setLastName(entity.getLastName());
+        return user;
     }
 
     private void throwIfUserExists(String login) throws LoginIsBusyException {
