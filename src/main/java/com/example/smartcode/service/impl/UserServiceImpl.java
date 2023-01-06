@@ -33,10 +33,10 @@ public class UserServiceImpl implements UserService {
     public User create(CreateUserDto entity) throws LoginIsBusyException, RoleNotFoundException {
         throwIfUserExists(entity.getLogin());
         Role role = roleRepository.findById(entity.getRole()).orElseThrow(() -> new RoleNotFoundException(entity.getRole()));
-        return userRepository.save(getUser(entity, role));
+        return userRepository.save(createUser(entity, role));
     }
 
-    private User getUser(CreateUserDto entity, Role role) {
+    private User createUser(CreateUserDto entity, Role role) {
         User user = new User();
         user.setLogin(entity.getLogin());
         user.setPassword(passwordEncoder.encode(entity.getPassword()));
@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService {
     }
 
     private void throwIfUserExists(String login) throws LoginIsBusyException {
-        if (userRepository.findByLogin(login).isPresent()) {
+        if (userRepository.existsByLogin(login)) {
             throw new LoginIsBusyException(login);
         }
     }
