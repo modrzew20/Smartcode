@@ -1,3 +1,3 @@
 # Smartcode
 
-To start database you need to complete .env file and run `docker-compose up -d`
+To start database with pgadmin you need to run `docker-compose up -d`
