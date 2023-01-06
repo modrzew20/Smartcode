@@ -1,9 +1,9 @@
-package com.example.smartcode.unit.service;
+package com.example.smartcode.unitTests.service;
 
 import com.example.smartcode.entity.Change;
 import com.example.smartcode.entity.figure.Rectangle;
 import com.example.smartcode.exception.InvalidAmountOfParametersException;
-import com.example.smartcode.exception.NegativeParametersException;
+import com.example.smartcode.exception.InvalidValueOfParameterException;
 import com.example.smartcode.repository.ChangeRepository;
 import com.example.smartcode.repository.ShapeRepository;
 import com.example.smartcode.service.impl.RectangleServiceStrategyImpl;
@@ -37,7 +37,7 @@ class RectangleServiceStrategyTest {
     RectangleServiceStrategyImpl rectangleServiceStrategy;
 
     @Test
-    void createTest() throws InvalidAmountOfParametersException, NegativeParametersException {
+    void createTest() throws InvalidAmountOfParametersException, InvalidValueOfParameterException {
 
         Rectangle rectangle = new Rectangle();
 
@@ -50,9 +50,9 @@ class RectangleServiceStrategyTest {
 
     @Test
     void createNegativeParametersExceptionTest() {
-        assertThrows(NegativeParametersException.class, () -> rectangleServiceStrategy.create(List.of(-2.2, 5.0)));
-        assertThrows(NegativeParametersException.class, () -> rectangleServiceStrategy.create(List.of(2.2, -5.0)));
-        assertThrows(NegativeParametersException.class, () -> rectangleServiceStrategy.create(List.of(-2.2, -5.0)));
+        assertThrows(InvalidValueOfParameterException.class, () -> rectangleServiceStrategy.create(List.of(-2.2, 5.0)));
+        assertThrows(InvalidValueOfParameterException.class, () -> rectangleServiceStrategy.create(List.of(2.2, -5.0)));
+        assertThrows(InvalidValueOfParameterException.class, () -> rectangleServiceStrategy.create(List.of(-2.2, -5.0)));
     }
 
     @Test
@@ -62,7 +62,7 @@ class RectangleServiceStrategyTest {
     }
 
     @Test
-    void updateTest() throws InvalidAmountOfParametersException, NegativeParametersException {
+    void updateTest() throws InvalidAmountOfParametersException, InvalidValueOfParameterException {
         Rectangle rectangle = new Rectangle();
         Change change = new Change();
 

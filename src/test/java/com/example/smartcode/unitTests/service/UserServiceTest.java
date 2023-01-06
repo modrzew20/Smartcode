@@ -1,4 +1,4 @@
-package com.example.smartcode.unit.service;
+package com.example.smartcode.unitTests.service;
 
 import com.example.smartcode.dto.CreateUserDto;
 import com.example.smartcode.entity.Role;

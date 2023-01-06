@@ -1,9 +1,9 @@
-package com.example.smartcode.unit.service;
+package com.example.smartcode.unitTests.service;
 
 import com.example.smartcode.entity.Change;
 import com.example.smartcode.entity.figure.Square;
 import com.example.smartcode.exception.InvalidAmountOfParametersException;
-import com.example.smartcode.exception.NegativeParametersException;
+import com.example.smartcode.exception.InvalidValueOfParameterException;
 import com.example.smartcode.repository.ChangeRepository;
 import com.example.smartcode.repository.ShapeRepository;
 import com.example.smartcode.service.impl.SquareServiceStrategyImpl;
@@ -36,7 +36,7 @@ class SquareServiceStrategyTest {
     SquareServiceStrategyImpl squareServiceStrategy;
 
     @Test
-    void createTest() throws InvalidAmountOfParametersException, NegativeParametersException {
+    void createTest() throws InvalidAmountOfParametersException, InvalidValueOfParameterException {
 
         Square square = new Square();
         square.setWidth(2.2);
@@ -50,7 +50,7 @@ class SquareServiceStrategyTest {
 
     @Test
     void createNegativeParametersExceptionTest() {
-        assertThrows(NegativeParametersException.class, () -> squareServiceStrategy.create(List.of(-2.2)));
+        assertThrows(InvalidValueOfParameterException.class, () -> squareServiceStrategy.create(List.of(-2.2)));
     }
 
     @Test
@@ -60,7 +60,7 @@ class SquareServiceStrategyTest {
     }
 
     @Test
-    void updateTest() throws InvalidAmountOfParametersException, NegativeParametersException {
+    void updateTest() throws InvalidAmountOfParametersException, InvalidValueOfParameterException {
         Square square = new Square();
         square.setWidth(2.2);
         Change change = new Change();

@@ -1,9 +1,9 @@
-package com.example.smartcode.unit.service;
+package com.example.smartcode.unitTests.service;
 
 import com.example.smartcode.entity.Change;
 import com.example.smartcode.entity.figure.Circle;
 import com.example.smartcode.exception.InvalidAmountOfParametersException;
-import com.example.smartcode.exception.NegativeParametersException;
+import com.example.smartcode.exception.InvalidValueOfParameterException;
 import com.example.smartcode.repository.ChangeRepository;
 import com.example.smartcode.repository.ShapeRepository;
 import com.example.smartcode.service.impl.CircleServiceStrategyImpl;
@@ -36,7 +36,7 @@ class CircleServiceStrategyTest {
     CircleServiceStrategyImpl circleServiceStrategy;
 
     @Test
-    void createTest() throws InvalidAmountOfParametersException, NegativeParametersException {
+    void createTest() throws InvalidAmountOfParametersException, InvalidValueOfParameterException {
         Circle circle = new Circle();
 
         when(shapeRepository.save(any(Circle.class))).thenReturn(circle);
@@ -48,7 +48,7 @@ class CircleServiceStrategyTest {
 
     @Test
     void createNegativeParametersExceptionTest() {
-        assertThrows(NegativeParametersException.class, () -> circleServiceStrategy.create(List.of(-2.2)));
+        assertThrows(InvalidValueOfParameterException.class, () -> circleServiceStrategy.create(List.of(-2.2)));
     }
 
     @Test
@@ -58,7 +58,7 @@ class CircleServiceStrategyTest {
     }
 
     @Test
-    void updateTest() throws InvalidAmountOfParametersException, NegativeParametersException {
+    void updateTest() throws InvalidAmountOfParametersException, InvalidValueOfParameterException {
         Circle circle = new Circle();
         Change change = new Change();
 

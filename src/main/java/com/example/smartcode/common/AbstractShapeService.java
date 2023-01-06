@@ -1,7 +1,7 @@
 package com.example.smartcode.common;
 
 import com.example.smartcode.exception.InvalidAmountOfParametersException;
-import com.example.smartcode.exception.NegativeParametersException;
+import com.example.smartcode.exception.InvalidValueOfParameterException;
 
 import java.util.List;
 
@@ -13,10 +13,10 @@ public abstract class AbstractShapeService {
         }
     }
 
-    protected void throwsIfNegativeParameters(List<Double> parameters) throws NegativeParametersException {
+    protected void throwsIfNegativeParameters(List<Double> parameters) throws InvalidValueOfParameterException {
         for (Double parameter : parameters) {
-            if (parameter < 0) {
-                throw new NegativeParametersException(parameter);
+            if (parameter <= 0) {
+                throw new InvalidValueOfParameterException(parameter);
             }
         }
     }

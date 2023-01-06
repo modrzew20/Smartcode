@@ -1,4 +1,4 @@
-package com.example.smartcode.integration;
+package com.example.smartcode.integrationTest;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;

@@ -1,4 +1,4 @@
-package com.example.smartcode.unit.service;
+package com.example.smartcode.unitTests.service;
 
 import com.example.smartcode.entity.figure.Circle;
 import com.example.smartcode.entity.figure.Rectangle;
@@ -89,7 +89,7 @@ class ShapeServiceTest {
     }
 
     @Test
-    void updateCircle() throws InvalidEtagException, InvalidAmountOfParametersException, NegativeParametersException, ShapeNotFoundException, InvalidShapeTypeException {
+    void updateCircle() throws InvalidEtagException, InvalidAmountOfParametersException, InvalidValueOfParameterException, ShapeNotFoundException, InvalidShapeTypeException {
         Shape shape = new Circle();
 
         when(shapeRepository.findById(any(UUID.class))).thenReturn(Optional.of(shape));
@@ -107,7 +107,7 @@ class ShapeServiceTest {
     }
 
     @Test
-    void updateSquare() throws InvalidEtagException, InvalidAmountOfParametersException, NegativeParametersException, ShapeNotFoundException, InvalidShapeTypeException {
+    void updateSquare() throws InvalidEtagException, InvalidAmountOfParametersException, InvalidValueOfParameterException, ShapeNotFoundException, InvalidShapeTypeException {
         Shape shape = new Square();
 
         when(shapeRepository.findById(any(UUID.class))).thenReturn(Optional.of(shape));
@@ -125,7 +125,7 @@ class ShapeServiceTest {
     }
 
     @Test
-    void updateRectangle() throws InvalidEtagException, InvalidAmountOfParametersException, NegativeParametersException, ShapeNotFoundException, InvalidShapeTypeException {
+    void updateRectangle() throws InvalidEtagException, InvalidAmountOfParametersException, InvalidValueOfParameterException, ShapeNotFoundException, InvalidShapeTypeException {
         Shape shape = new Rectangle();
 
         when(shapeRepository.findById(any(UUID.class))).thenReturn(Optional.of(shape));

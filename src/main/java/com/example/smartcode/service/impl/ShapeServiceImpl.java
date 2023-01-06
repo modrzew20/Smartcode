@@ -39,7 +39,7 @@ public class ShapeServiceImpl implements ShapeService {
     }
 
     @Override
-    public Shape update(UUID id, List<Double> parameters) throws ShapeNotFoundException, InvalidAmountOfParametersException, NegativeParametersException, InvalidEtagException, InvalidShapeTypeException {
+    public Shape update(UUID id, List<Double> parameters) throws ShapeNotFoundException, InvalidAmountOfParametersException, InvalidValueOfParameterException, InvalidEtagException, InvalidShapeTypeException {
         Shape shape = get(id);
         etagGenerator.verifyETag(shape);
         ShapeServiceStrategy shapeServiceStrategy = pluginServiceRegistry.getPluginFor(shape.getClass().getSimpleName().toLowerCase())

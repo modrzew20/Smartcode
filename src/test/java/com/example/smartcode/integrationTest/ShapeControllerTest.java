@@ -1,4 +1,4 @@
-package com.example.smartcode.integration;
+package com.example.smartcode.integrationTest;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -84,14 +84,47 @@ class ShapeControllerTest {
     }
 
 
-    @Test
-    void createSquareNegativeParameterExceptionTest() {
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "{\"type\":\"SQUARE\",\"parameters\":[-13.4]}",
+            "{\"type\":\"SQUARE\",\"parameters\":[0]}",
+            "{\"type\":\"CIRCLE\",\"parameters\":[-14]}",
+            "{\"type\":\"CIRCLE\",\"parameters\":[0]}",
+            "{\"type\":\"RECTANGLE\",\"parameters\":[-10.66666, 20]}",
+            "{\"type\":\"RECTANGLE\",\"parameters\":[10, -20.6666]}",
+            "{\"type\":\"RECTANGLE\",\"parameters\":[-546456, -464564]}",
+    })
+    void createInvalidValueOfParameterExceptionTest(String shape) {
 
         int size = RestAssured.get("/api/v1/shapes").then().statusCode(200).extract().path("size()");
 
         RestAssured.given().contentType(ContentType.JSON)
                 .auth().oauth2(creatorBearerToken)
-                .body("{\"type\":\"SQUARE\",\"parameters\":[-13.4]}")
+                .body(shape)
+                .post("/api/v1/shapes")
+                .then().statusCode(403)
+                .extract().response();
+
+        RestAssured.get("/api/v1/shapes").then().statusCode(200).body("size()", is(size));
+    }
+
+
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "{\"type\":\"SQUARE\"}",
+            "{\"type\":\"SQUARE\",\"parameters\":[5,6]}",
+            "{\"type\":\"CIRCLE\"}",
+            "{\"type\":\"CIRCLE\",\"parameters\":[2,6]}",
+            "{\"type\":\"RECTANGLE\",\"parameters\":[20]}",
+            "{\"type\":\"RECTANGLE\",\"parameters\":[10, 50,6666]}",
+    })
+    void createInvalidAmountOfParametersTest(String shape) {
+
+        int size = RestAssured.get("/api/v1/shapes").then().statusCode(200).extract().path("size()");
+
+        RestAssured.given().contentType(ContentType.JSON)
+                .auth().oauth2(creatorBearerToken)
+                .body(shape)
                 .post("/api/v1/shapes")
                 .then().statusCode(403)
                 .extract().response();
@@ -203,25 +236,6 @@ class ShapeControllerTest {
                 .body("{\"parameters\":[2.4,5.6]}")
                 .put("/api/v1/shapes/" + createdShapeUUID)
                 .then().statusCode(200);
-    }
-
-    @Test
-    void updateRectangleInvalidAmountOfParametersTest() {
-        Response response = RestAssured.given()
-                .contentType(ContentType.JSON)
-                .auth().oauth2(creatorBearerToken)
-                .body("{\"type\":\"RECTANGLE\",\"parameters\":[2.3,3.6]}")
-                .post("/api/v1/shapes");
-
-        String createdShapeUUID = response.then().extract().path("id");
-        String etag = response.header("ETag");
-
-        RestAssured.given()
-                .contentType(ContentType.JSON)
-                .auth().oauth2(creatorBearerToken)
-                .header("If-Match", etag)
-                .put("/api/v1/shapes/" + createdShapeUUID)
-                .then().statusCode(403);
     }
 
     @Test

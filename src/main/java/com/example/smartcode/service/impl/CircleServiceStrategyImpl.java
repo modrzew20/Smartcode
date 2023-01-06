@@ -5,7 +5,7 @@ import com.example.smartcode.entity.Change;
 import com.example.smartcode.entity.figure.Circle;
 import com.example.smartcode.entity.figure.Shape;
 import com.example.smartcode.exception.InvalidAmountOfParametersException;
-import com.example.smartcode.exception.NegativeParametersException;
+import com.example.smartcode.exception.InvalidValueOfParameterException;
 import com.example.smartcode.repository.ChangeRepository;
 import com.example.smartcode.repository.ShapeRepository;
 import com.example.smartcode.service.ShapeServiceStrategy;
@@ -28,7 +28,7 @@ public class CircleServiceStrategyImpl extends AbstractShapeService implements S
     private final ChangeRepository changeRepository;
 
     @Override
-    public Shape create(List<Double> parameters) throws InvalidAmountOfParametersException, NegativeParametersException {
+    public Shape create(List<Double> parameters) throws InvalidAmountOfParametersException, InvalidValueOfParameterException {
         throwsIfInvalidAmountOfParameters(parameters, 1);
         throwsIfNegativeParameters(parameters);
 
@@ -38,7 +38,7 @@ public class CircleServiceStrategyImpl extends AbstractShapeService implements S
     }
 
     @Override
-    public Shape update(Shape shape, List<Double> parameters) throws NegativeParametersException, InvalidAmountOfParametersException {
+    public Shape update(Shape shape, List<Double> parameters) throws InvalidValueOfParameterException, InvalidAmountOfParametersException {
         throwsIfInvalidAmountOfParameters(parameters, 1);
         throwsIfNegativeParameters(parameters);
         Circle circle = (Circle) shape;

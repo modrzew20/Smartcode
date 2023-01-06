@@ -52,7 +52,7 @@ public class ShapeControllerImpl implements ShapeController {
                     .eTag(etagGenerator.generateETag(shape))
                     .body(shapeMapper.mapShapeToGetShapeDto(shape));
 
-        } catch (NegativeParametersException | InvalidAmountOfParametersException e) {
+        } catch (InvalidValueOfParameterException | InvalidAmountOfParametersException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }
@@ -92,7 +92,7 @@ public class ShapeControllerImpl implements ShapeController {
             return ResponseEntity.ok().body(shapeMapper.mapShapeToGetShapeDto(shape));
         } catch (ShapeNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
-        } catch (InvalidAmountOfParametersException | NegativeParametersException e) {
+        } catch (InvalidAmountOfParametersException | InvalidValueOfParameterException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         } catch (InvalidEtagException | InvalidShapeTypeException e) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());

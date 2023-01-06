@@ -16,5 +16,5 @@ public interface ShapeService {
     Shape get(UUID id) throws ShapeNotFoundException;
 
     @PostAuthorize("(hasRole('ROLE_CREATOR') && returnObject.createdBy == authentication.name) || hasRole('ROLE_ADMIN')")
-    Shape update(UUID id, List<Double> parameters) throws ShapeNotFoundException, InvalidAmountOfParametersException, NegativeParametersException, InvalidEtagException, InvalidShapeTypeException;
+    Shape update(UUID id, List<Double> parameters) throws ShapeNotFoundException, InvalidAmountOfParametersException, InvalidValueOfParameterException, InvalidEtagException, InvalidShapeTypeException;
 }

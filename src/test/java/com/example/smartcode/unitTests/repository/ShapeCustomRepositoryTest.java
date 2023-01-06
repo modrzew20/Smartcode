@@ -1,16 +1,14 @@
-package com.example.smartcode.unit.repository;
+package com.example.smartcode.unitTests.repository;
 
 import com.example.smartcode.entity.figure.Circle;
 import com.example.smartcode.entity.figure.Shape;
 import com.example.smartcode.exception.InvalidParameterException;
-import com.example.smartcode.repository.ShapeCustomRepository;
 import com.example.smartcode.repository.ShapeRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
