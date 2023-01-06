@@ -3,7 +3,6 @@ package com.example.smartcode.controller.impl;
 import com.example.smartcode.controller.ShapeController;
 import com.example.smartcode.dto.CreateShapeDto;
 import com.example.smartcode.dto.get.GetChangeDto;
-import com.example.smartcode.dto.SearchShapeParam;
 import com.example.smartcode.dto.get.GetShapeDto;
 import com.example.smartcode.entity.figure.Shape;
 import com.example.smartcode.exception.InvalidAmountOfParametersException;
@@ -22,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 
@@ -56,8 +56,8 @@ public class ShapeControllerImpl implements ShapeController {
     }
 
     @Override
-    public ResponseEntity<List<Shape>> getAll(SearchShapeParam searchShapeParam) {
-        return ResponseEntity.ok(shapeService.getAll(searchShapeParam));
+    public ResponseEntity<List<Shape>> getAll(Map<String, String> params) {
+           return ResponseEntity.ok(shapeService.getAll(params));
     }
 
     @Override
