@@ -6,6 +6,7 @@ import com.example.smartcode.dto.get.GetChangeDto;
 import com.example.smartcode.dto.get.GetShapeDto;
 import com.example.smartcode.entity.figure.Shape;
 import com.example.smartcode.exception.InvalidAmountOfParametersException;
+import com.example.smartcode.exception.InvalidParameterException;
 import com.example.smartcode.exception.NegativeParametersException;
 import com.example.smartcode.exception.ShapeNotFoundException;
 import com.example.smartcode.mapper.ChangeMapper;
@@ -20,6 +21,7 @@ import org.springframework.plugin.core.PluginRegistry;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -28,6 +30,8 @@ import java.util.UUID;
 @RestController
 @RequiredArgsConstructor
 public class ShapeControllerImpl implements ShapeController {
+
+    private static final String SHAPE_TYPE_NOT_SUPPORTED = "Shape type not supported";
 
     private final ShapeService shapeService;
     private final PluginRegistry<ShapeServiceStrategy, String> pluginServiceRegistry;
@@ -39,10 +43,10 @@ public class ShapeControllerImpl implements ShapeController {
     public ResponseEntity<GetShapeDto> create(CreateShapeDto createShapeDto) {
         try {
             ShapeServiceStrategy shapeServiceStrategy = pluginServiceRegistry.getPluginFor(createShapeDto.getType().toLowerCase())
-                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Shape type is not supported"));
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, SHAPE_TYPE_NOT_SUPPORTED));
 
             ShapeMapper shapeMapper = pluginMapperRegistry.getPluginFor(createShapeDto.getType().toLowerCase())
-                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Shape type is not supported"));
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, SHAPE_TYPE_NOT_SUPPORTED));
 
             Shape shape = shapeServiceStrategy.create(createShapeDto.getParameters());
 
@@ -56,8 +60,20 @@ public class ShapeControllerImpl implements ShapeController {
     }
 
     @Override
-    public ResponseEntity<List<Shape>> getAll(Map<String, String> params) {
-        return ResponseEntity.ok(shapeService.getAll(params));
+    public ResponseEntity<List<GetShapeDto>> getAll(Map<String, String> params) {
+        try {
+            List<Shape> shapes = shapeService.getAll(params);
+            List<GetShapeDto> result = new ArrayList<>();
+            ShapeMapper shapeMapper;
+            for ( Shape shape : shapes ) {
+                shapeMapper = pluginMapperRegistry.getPluginFor(shape.getType().toLowerCase())
+                        .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, SHAPE_TYPE_NOT_SUPPORTED));
+                result.add(shapeMapper.mapShapeToGetShapeDto(shape));
+            }
+            return ResponseEntity.ok().body(result);
+        } catch (InvalidParameterException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
     }
 
     @Override

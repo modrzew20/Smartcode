@@ -1,6 +1,7 @@
 package com.example.smartcode.service.impl;
 
 import com.example.smartcode.entity.figure.Shape;
+import com.example.smartcode.exception.InvalidParameterException;
 import com.example.smartcode.exception.ShapeNotFoundException;
 import com.example.smartcode.repository.ShapeRepository;
 import com.example.smartcode.service.ShapeService;
@@ -18,7 +19,7 @@ public class ShapeServiceImpl implements ShapeService {
     private final ShapeRepository shapeRepository;
 
     @Override
-    public List<Shape> getAll(Map<String, String> params) {
+    public List<Shape> getAll(Map<String, String> params) throws InvalidParameterException {
         if (params.isEmpty()) {
             return shapeRepository.findAll();
         } else {
