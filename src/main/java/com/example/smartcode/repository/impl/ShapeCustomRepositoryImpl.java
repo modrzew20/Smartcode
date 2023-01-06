@@ -11,12 +11,14 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class ShapeCustomRepositoryImpl implements ShapeCustomRepository {
 
+    private static final String CREATED_AT = "createdAt";
     private static final String FROM = "From";
     private static final String TO = "To";
 
@@ -30,18 +32,7 @@ public class ShapeCustomRepositoryImpl implements ShapeCustomRepository {
             CriteriaQuery<Shape> query = cb.createQuery(Shape.class);
             Root<Shape> root = query.from(Shape.class);
 
-            List<Predicate> predicates = new ArrayList<>();
-            for (Map.Entry<String, String> param : params.entrySet()) {
-                if (param.getKey().contains(TO)) {
-                    Predicate predicate = getLessOrEqualPredicate(cb, root, param.getKey(), param.getValue());
-                    predicates.add(predicate);
-                } else if (param.getKey().contains(FROM)) {
-                    Predicate predicate = getGreaterOrEqualPredicate(cb, root, param.getKey(), param.getValue());
-                    predicates.add(predicate);
-                } else {
-                    predicates.add(cb.equal(root.get(param.getKey()), param.getValue().toLowerCase()));
-                }
-            }
+            List<Predicate> predicates = getPredicateList(params, cb, root);
             TypedQuery<Shape> typedQuery = entityManager.createQuery(query.select(root).where(predicates.toArray(new Predicate[0])));
             return typedQuery.getResultList();
         } catch (IllegalArgumentException e) {
@@ -49,17 +40,48 @@ public class ShapeCustomRepositoryImpl implements ShapeCustomRepository {
         }
     }
 
-    private Predicate getLessOrEqualPredicate(CriteriaBuilder cb, Root<Shape> root, String key, String value) {
+    private List<Predicate> getPredicateList(Map<String, String> params, CriteriaBuilder cb, Root<Shape> root) {
+        List<Predicate> predicates = new ArrayList<>();
+        for (Map.Entry<String, String> param : params.entrySet()) {
+            if (param.getKey().contains(TO)) {
+                predicates.add(getLessOrEqualValuePredicate(cb, root, param.getKey(), param.getValue()));
+            } else if (param.getKey().contains(FROM)) {
+                predicates.add(getGreaterOrEqualValuePredicate(cb, root, param.getKey(), param.getValue()));
+            } else {
+                predicates.add(getEqualValuePredicate(cb, root, param.getKey(), param.getValue()));
+            }
+        }
+        return predicates;
+    }
+
+    private Predicate getEqualValuePredicate(CriteriaBuilder cb, Root<Shape> root, String key, String value) {
+        if(key.equals(CREATED_AT)) {
+            return cb.equal(root.get(key), LocalDateTime.parse(value));
+        }
+        return cb.equal(root.get(key), value.toLowerCase());
+    }
+
+    private Predicate getLessOrEqualValuePredicate(CriteriaBuilder cb, Root<Shape> root, String key, String value) {
         int splitIndex = key.indexOf(TO);
         String attributeName = key.substring(0, splitIndex);
+
+        if(attributeName.equals(CREATED_AT)) {
+            return cb.lessThanOrEqualTo(root.get(attributeName), LocalDateTime.parse(value));
+        }
         return cb.lessThanOrEqualTo(root.get(attributeName), value);
     }
 
-    private Predicate getGreaterOrEqualPredicate(CriteriaBuilder cb, Root<Shape> root, String key, String value) {
+    private Predicate getGreaterOrEqualValuePredicate(CriteriaBuilder cb, Root<Shape> root, String key, String value) {
         int splitIndex = key.indexOf(FROM);
         String attributeName = key.substring(0, splitIndex);
+
+        if(attributeName.equals(CREATED_AT)) {
+            return cb.greaterThanOrEqualTo(root.get(attributeName), LocalDateTime.parse(value));
+        }
         return cb.greaterThanOrEqualTo(root.get(attributeName), value);
     }
+
+
 
 
 }

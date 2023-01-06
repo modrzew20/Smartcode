@@ -20,7 +20,6 @@ public interface ShapeController {
     @Secured("ROLE_CREATOR")
     ResponseEntity<GetShapeDto> create(@RequestBody @Validated CreateShapeDto dto);
 
-    //TODO to lowercase, check with date
     @GetMapping
     ResponseEntity<List<GetShapeDto>> getAll(@RequestParam Map<String, String> params);
 

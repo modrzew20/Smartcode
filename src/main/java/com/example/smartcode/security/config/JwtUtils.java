@@ -17,7 +17,6 @@ import java.util.function.Function;
 @Component
 public class JwtUtils {
 
-    //todo move to properties
     private static final String JWT_KEY = "secret";
 
     public String extractUsername(String token) {
