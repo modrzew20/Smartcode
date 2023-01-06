@@ -8,5 +8,5 @@ import java.util.Map;
 
 public interface ShapeCustomRepository {
 
-    List<Shape> getAll(Map<String, String> params) throws InvalidParameterException;
+    List<Shape> findAll(Map<String, String> params) throws InvalidParameterException;
 }

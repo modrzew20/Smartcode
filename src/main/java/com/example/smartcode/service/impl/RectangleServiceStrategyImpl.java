@@ -20,6 +20,10 @@ import java.util.List;
 @Transactional(noRollbackFor = Exception.class)
 public class RectangleServiceStrategyImpl extends AbstractShapeService implements ShapeServiceStrategy {
 
+    private static final String RECTANGLE = "rectangle";
+    private static final String WIDTH = "width";
+    private static final String LENGTH = "length";
+
     private final ShapeRepository shapeRepository;
     private final ChangeRepository changeRepository;
 
@@ -41,12 +45,12 @@ public class RectangleServiceStrategyImpl extends AbstractShapeService implement
         Rectangle rectangle = (Rectangle) shape;
 
         Change changeLength = new Change();
-        changeLength.setParameterName("lenght");
+        changeLength.setParameterName(LENGTH);
         changeLength.setParameterNewValue(parameters.get(0));
         changeLength.setParameterOldValue(rectangle.getLength());
 
         Change changeWidth = new Change();
-        changeWidth.setParameterName("width");
+        changeWidth.setParameterName(WIDTH);
         changeWidth.setParameterNewValue(parameters.get(0));
         changeWidth.setParameterOldValue(rectangle.getWidth());
 
@@ -59,6 +63,6 @@ public class RectangleServiceStrategyImpl extends AbstractShapeService implement
 
     @Override
     public boolean supports(String delimiter) {
-        return delimiter.equals("rectangle");
+        return delimiter.equals(RECTANGLE);
     }
 }

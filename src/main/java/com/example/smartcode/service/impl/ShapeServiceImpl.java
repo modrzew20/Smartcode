@@ -29,7 +29,7 @@ public class ShapeServiceImpl implements ShapeService {
         if (params.isEmpty()) {
             return shapeRepository.findAll();
         } else {
-            return shapeRepository.getAll(params);
+            return shapeRepository.findAll(params);
         }
     }
 
@@ -39,11 +39,11 @@ public class ShapeServiceImpl implements ShapeService {
     }
 
     @Override
-    public Shape update(UUID id, List<Double> parameters) throws ShapeNotFoundException, InvalidAmountOfParametersException, NegativeParametersException, InvalidEtagException {
+    public Shape update(UUID id, List<Double> parameters) throws ShapeNotFoundException, InvalidAmountOfParametersException, NegativeParametersException, InvalidEtagException, InvalidShapeTypeException {
         Shape shape = get(id);
         etagGenerator.verifyETag(shape);
-        ShapeServiceStrategy shapeServiceStrategy = pluginServiceRegistry.getPluginFor(shape.getType().toLowerCase())
-                .orElseThrow(() -> new ShapeNotFoundException(id));
+        ShapeServiceStrategy shapeServiceStrategy = pluginServiceRegistry.getPluginFor(shape.getClass().getSimpleName().toLowerCase())
+                .orElseThrow(() -> new InvalidShapeTypeException(shape.getClass().getSimpleName()));
         return shapeServiceStrategy.update(shape, parameters);
     }
 

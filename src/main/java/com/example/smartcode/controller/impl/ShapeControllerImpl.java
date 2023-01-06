@@ -64,7 +64,7 @@ public class ShapeControllerImpl implements ShapeController {
             List<GetShapeDto> result = new ArrayList<>();
             ShapeMapper shapeMapper;
             for (Shape shape : shapes) {
-                shapeMapper = pluginMapperRegistry.getPluginFor(shape.getType().toLowerCase())
+                shapeMapper = pluginMapperRegistry.getPluginFor(shape.getClass().getSimpleName().toLowerCase())
                         .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, SHAPE_TYPE_NOT_SUPPORTED));
                 result.add(shapeMapper.mapShapeToGetShapeDto(shape));
             }
@@ -94,7 +94,7 @@ public class ShapeControllerImpl implements ShapeController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         } catch (InvalidAmountOfParametersException | NegativeParametersException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
-        } catch (InvalidEtagException e) {
+        } catch (InvalidEtagException | InvalidShapeTypeException e) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
         }
     }

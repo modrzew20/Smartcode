@@ -26,7 +26,7 @@ public class ShapeCustomRepositoryImpl implements ShapeCustomRepository {
     private EntityManager entityManager;
 
     @Override
-    public List<Shape> getAll(Map<String, String> params) throws InvalidParameterException {
+    public List<Shape> findAll(Map<String, String> params) throws InvalidParameterException {
         try {
             CriteriaBuilder cb = entityManager.getCriteriaBuilder();
             CriteriaQuery<Shape> query = cb.createQuery(Shape.class);

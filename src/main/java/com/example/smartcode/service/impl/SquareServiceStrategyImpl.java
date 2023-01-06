@@ -20,6 +20,9 @@ import java.util.List;
 @Transactional(noRollbackFor = Exception.class)
 public class SquareServiceStrategyImpl extends AbstractShapeService implements ShapeServiceStrategy {
 
+    private static final String SQUARE = "square";
+    private static final String WIDTH = "width";
+
     private final ShapeRepository shapeRepository;
     private final ChangeRepository changeRepository;
 
@@ -39,7 +42,7 @@ public class SquareServiceStrategyImpl extends AbstractShapeService implements S
 
 
         Change change = new Change();
-        change.setParameterName("width");
+        change.setParameterName(WIDTH);
         change.setParameterNewValue(parameters.get(0));
         change.setParameterOldValue(square.getWidth());
 
@@ -51,6 +54,6 @@ public class SquareServiceStrategyImpl extends AbstractShapeService implements S
 
     @Override
     public boolean supports(String delimiter) {
-        return delimiter.equals("square");
+        return delimiter.equals(SQUARE);
     }
 }

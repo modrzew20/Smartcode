@@ -13,14 +13,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @SpringBootTest
 class SmartcodeApplicationTests {
 
-	@Autowired
-	private ShapeRepository shapeRepository;
+    @Autowired
+    private ShapeRepository shapeRepository;
 
-	@Test
-	void contextLoads() {
-		assertThrows(InvalidParameterException.class, () -> shapeRepository.getAll(Map.of("type1", "circle")));
+    @Test
+    void contextLoads() {
+        assertThrows(InvalidParameterException.class, () -> shapeRepository.findAll(Map.of("type1", "circle")));
 
-	}
-	//TODO tests
+    }
+    //TODO tests
 
 }

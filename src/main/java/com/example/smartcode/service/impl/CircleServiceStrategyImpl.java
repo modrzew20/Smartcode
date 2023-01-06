@@ -20,6 +20,10 @@ import java.util.List;
 @Transactional(noRollbackFor = Exception.class)
 public class CircleServiceStrategyImpl extends AbstractShapeService implements ShapeServiceStrategy {
 
+    private static final String CIRCLE = "circle";
+    private static final String RADIUS = "radius";
+
+
     private final ShapeRepository shapeRepository;
     private final ChangeRepository changeRepository;
 
@@ -40,7 +44,7 @@ public class CircleServiceStrategyImpl extends AbstractShapeService implements S
         Circle circle = (Circle) shape;
 
         Change change = new Change();
-        change.setParameterName("radius");
+        change.setParameterName(RADIUS);
         change.setParameterNewValue(parameters.get(0));
         change.setParameterOldValue(circle.getRadius());
 
@@ -51,6 +55,6 @@ public class CircleServiceStrategyImpl extends AbstractShapeService implements S
 
     @Override
     public boolean supports(String delimiter) {
-        return delimiter.equals("circle");
+        return delimiter.equals(CIRCLE);
     }
 }
