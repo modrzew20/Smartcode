@@ -1,9 +1,9 @@
 package com.example.smartcode.controller.impl;
 
 import com.example.smartcode.controller.UserController;
-import com.example.smartcode.dto.CreateUserDto;
 import com.example.smartcode.dto.PaginationParam;
-import com.example.smartcode.dto.get.GetUserDto;
+import com.example.smartcode.dto.user.CreateUserDto;
+import com.example.smartcode.dto.user.GetUserDto;
 import com.example.smartcode.exception.LoginIsBusyException;
 import com.example.smartcode.exception.RoleNotFoundException;
 import com.example.smartcode.mapper.UserMapper;

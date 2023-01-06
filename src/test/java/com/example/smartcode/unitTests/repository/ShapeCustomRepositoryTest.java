@@ -1,7 +1,7 @@
 package com.example.smartcode.unitTests.repository;
 
-import com.example.smartcode.entity.figure.Circle;
-import com.example.smartcode.entity.figure.Shape;
+import com.example.smartcode.entity.shape.Circle;
+import com.example.smartcode.entity.shape.Shape;
 import com.example.smartcode.exception.InvalidParameterException;
 import com.example.smartcode.repository.ShapeRepository;
 import org.junit.jupiter.api.BeforeEach;

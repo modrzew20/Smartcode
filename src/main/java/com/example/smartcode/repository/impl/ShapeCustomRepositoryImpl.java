@@ -1,6 +1,6 @@
 package com.example.smartcode.repository.impl;
 
-import com.example.smartcode.entity.figure.Shape;
+import com.example.smartcode.entity.shape.Shape;
 import com.example.smartcode.exception.InvalidParameterException;
 import com.example.smartcode.repository.ShapeCustomRepository;
 import jakarta.persistence.EntityManager;

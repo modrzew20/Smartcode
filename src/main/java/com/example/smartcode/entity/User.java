@@ -1,7 +1,7 @@
 package com.example.smartcode.entity;
 
 import com.example.smartcode.common.AbstractEntity;
-import com.example.smartcode.entity.figure.Shape;
+import com.example.smartcode.entity.shape.Shape;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;

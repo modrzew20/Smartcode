@@ -1,6 +1,6 @@
 package com.example.smartcode.mapper.impl;
 
-import com.example.smartcode.dto.get.GetChangeDto;
+import com.example.smartcode.dto.GetChangeDto;
 import com.example.smartcode.entity.Change;
 import com.example.smartcode.mapper.ChangeMapper;
 import org.springframework.stereotype.Component;

@@ -1,4 +1,4 @@
-package com.example.smartcode.entity.figure;
+package com.example.smartcode.entity.shape;
 
 import com.example.smartcode.common.AbstractEntity;
 import com.example.smartcode.entity.Change;

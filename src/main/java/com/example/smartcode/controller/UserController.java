@@ -1,8 +1,8 @@
 package com.example.smartcode.controller;
 
-import com.example.smartcode.dto.CreateUserDto;
 import com.example.smartcode.dto.PaginationParam;
-import com.example.smartcode.dto.get.GetUserDto;
+import com.example.smartcode.dto.user.CreateUserDto;
+import com.example.smartcode.dto.user.GetUserDto;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;

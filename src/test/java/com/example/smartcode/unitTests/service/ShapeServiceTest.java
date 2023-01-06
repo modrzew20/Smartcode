@@ -1,9 +1,9 @@
 package com.example.smartcode.unitTests.service;
 
-import com.example.smartcode.entity.figure.Circle;
-import com.example.smartcode.entity.figure.Rectangle;
-import com.example.smartcode.entity.figure.Shape;
-import com.example.smartcode.entity.figure.Square;
+import com.example.smartcode.entity.shape.Circle;
+import com.example.smartcode.entity.shape.Rectangle;
+import com.example.smartcode.entity.shape.Shape;
+import com.example.smartcode.entity.shape.Square;
 import com.example.smartcode.exception.*;
 import com.example.smartcode.repository.ShapeRepository;
 import com.example.smartcode.service.ShapeServiceStrategy;

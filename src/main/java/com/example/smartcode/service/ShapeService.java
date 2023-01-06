@@ -1,6 +1,6 @@
 package com.example.smartcode.service;
 
-import com.example.smartcode.entity.figure.Shape;
+import com.example.smartcode.entity.shape.Shape;
 import com.example.smartcode.exception.*;
 import org.springframework.security.access.prepost.PostAuthorize;
 

@@ -1,6 +1,6 @@
 package com.example.smartcode.service;
 
-import com.example.smartcode.entity.figure.Shape;
+import com.example.smartcode.entity.shape.Shape;
 import com.example.smartcode.exception.InvalidAmountOfParametersException;
 import com.example.smartcode.exception.InvalidValueOfParameterException;
 import org.springframework.plugin.core.Plugin;

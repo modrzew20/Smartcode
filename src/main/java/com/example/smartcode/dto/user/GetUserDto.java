@@ -1,28 +1,20 @@
-package com.example.smartcode.dto;
+package com.example.smartcode.dto.user;
 
-import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 @NoArgsConstructor
-public class CreateUserDto {
+public class GetUserDto {
 
-    @NotBlank
+    private UUID id;
     private String firstName;
-
-    @NotBlank
     private String lastName;
-
-    @NotBlank
     private String login;
-
-    @NotBlank
-    private String password;
-
-    @NotBlank
     private String role;
-
+    private int amountOfFigures;
 }

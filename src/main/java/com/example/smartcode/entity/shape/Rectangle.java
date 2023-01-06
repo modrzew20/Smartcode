@@ -1,4 +1,4 @@
-package com.example.smartcode.entity.figure;
+package com.example.smartcode.entity.shape;
 
 import jakarta.persistence.Entity;
 import lombok.Getter;

@@ -1,11 +1,11 @@
 package com.example.smartcode.controller.impl;
 
 import com.example.smartcode.controller.ShapeController;
-import com.example.smartcode.dto.CreateShapeDto;
-import com.example.smartcode.dto.PutShapeDto;
-import com.example.smartcode.dto.get.GetChangeDto;
-import com.example.smartcode.dto.get.GetShapeDto;
-import com.example.smartcode.entity.figure.Shape;
+import com.example.smartcode.dto.GetChangeDto;
+import com.example.smartcode.dto.shape.CreateShapeDto;
+import com.example.smartcode.dto.shape.GetShapeDto;
+import com.example.smartcode.dto.shape.PutShapeDto;
+import com.example.smartcode.entity.shape.Shape;
 import com.example.smartcode.exception.*;
 import com.example.smartcode.mapper.ChangeMapper;
 import com.example.smartcode.mapper.ShapeMapper;

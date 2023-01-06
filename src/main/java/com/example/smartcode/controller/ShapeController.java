@@ -1,9 +1,9 @@
 package com.example.smartcode.controller;
 
-import com.example.smartcode.dto.CreateShapeDto;
-import com.example.smartcode.dto.PutShapeDto;
-import com.example.smartcode.dto.get.GetChangeDto;
-import com.example.smartcode.dto.get.GetShapeDto;
+import com.example.smartcode.dto.GetChangeDto;
+import com.example.smartcode.dto.shape.CreateShapeDto;
+import com.example.smartcode.dto.shape.GetShapeDto;
+import com.example.smartcode.dto.shape.PutShapeDto;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;

@@ -1,10 +1,10 @@
 package com.example.smartcode.mapper.impl;
 
 import com.example.smartcode.common.AbstractShapeMapper;
-import com.example.smartcode.dto.get.GetShapeDto;
-import com.example.smartcode.dto.get.GetSquareDto;
-import com.example.smartcode.entity.figure.Shape;
-import com.example.smartcode.entity.figure.Square;
+import com.example.smartcode.dto.shape.GetShapeDto;
+import com.example.smartcode.dto.shape.GetSquareDto;
+import com.example.smartcode.entity.shape.Shape;
+import com.example.smartcode.entity.shape.Square;
 import com.example.smartcode.mapper.ShapeMapper;
 import org.springframework.stereotype.Component;
 

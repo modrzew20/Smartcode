@@ -1,4 +1,4 @@
-package com.example.smartcode.dto.get;
+package com.example.smartcode.dto.shape;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,6 +1,6 @@
 package com.example.smartcode.service.impl;
 
-import com.example.smartcode.entity.figure.Shape;
+import com.example.smartcode.entity.shape.Shape;
 import com.example.smartcode.exception.*;
 import com.example.smartcode.repository.ShapeRepository;
 import com.example.smartcode.service.ShapeService;

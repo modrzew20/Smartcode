@@ -1,7 +1,7 @@
 package com.example.smartcode.unitTests.service;
 
 import com.example.smartcode.entity.Change;
-import com.example.smartcode.entity.figure.Rectangle;
+import com.example.smartcode.entity.shape.Rectangle;
 import com.example.smartcode.exception.InvalidAmountOfParametersException;
 import com.example.smartcode.exception.InvalidValueOfParameterException;
 import com.example.smartcode.repository.ChangeRepository;

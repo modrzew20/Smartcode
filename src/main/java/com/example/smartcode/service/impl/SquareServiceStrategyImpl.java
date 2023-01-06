@@ -2,8 +2,8 @@ package com.example.smartcode.service.impl;
 
 import com.example.smartcode.common.AbstractShapeService;
 import com.example.smartcode.entity.Change;
-import com.example.smartcode.entity.figure.Shape;
-import com.example.smartcode.entity.figure.Square;
+import com.example.smartcode.entity.shape.Shape;
+import com.example.smartcode.entity.shape.Square;
 import com.example.smartcode.exception.InvalidAmountOfParametersException;
 import com.example.smartcode.exception.InvalidValueOfParameterException;
 import com.example.smartcode.repository.ChangeRepository;

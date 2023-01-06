@@ -1,7 +1,7 @@
 package com.example.smartcode.mapper;
 
-import com.example.smartcode.dto.get.GetShapeDto;
-import com.example.smartcode.entity.figure.Shape;
+import com.example.smartcode.dto.shape.GetShapeDto;
+import com.example.smartcode.entity.shape.Shape;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.plugin.core.Plugin;
 

@@ -1,4 +1,4 @@
-package com.example.smartcode.dto;
+package com.example.smartcode.dto.shape;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
