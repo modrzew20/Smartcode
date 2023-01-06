@@ -19,19 +19,17 @@ import java.util.List;
 
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 public abstract class Shape extends AbstractEntity {
 
-    @Setter
     @Column(nullable = false, updatable = false)
     protected String type;
 
-    @Setter
     @Column(nullable = false)
     protected double area;
 
-    @Setter
     @Column(nullable = false)
     protected double perimeter;
 
@@ -52,6 +50,7 @@ public abstract class Shape extends AbstractEntity {
     private LocalDateTime lastModifiedAt;
 
     @OneToMany
+    @Setter(AccessLevel.NONE)
     List<Change> changes = new ArrayList<>();
 
     @PrePersist
