@@ -37,7 +37,7 @@ public class SecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .addFilter(new JwtAuthenticationFilter(authenticationManager, jwtUtils))
-                .addFilterAfter(new JwtTokenFilter(userDetailsService, jwtUtils), JwtAuthenticationFilter.class)
+                .addFilterBefore(new JwtTokenFilter(userDetailsService, jwtUtils), JwtAuthenticationFilter.class)
                 .authenticationManager(authenticationManager)
                 .authorizeHttpRequests()
                 .requestMatchers("/login").permitAll()

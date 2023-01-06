@@ -1,8 +1,8 @@
 package com.example.smartcode.dto;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.Setter;
 
 import java.util.List;
@@ -12,10 +12,10 @@ import java.util.List;
 @NoArgsConstructor
 public class CreateShapeDto {
 
-    @NonNull
+    @NotNull
     String type;
 
-    @NonNull
+    @NotNull
     List<Double> parameters;
 
 }

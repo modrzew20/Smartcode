@@ -4,9 +4,9 @@ import com.example.smartcode.dto.CreateShapeDto;
 import com.example.smartcode.dto.PutShapeDto;
 import com.example.smartcode.dto.get.GetChangeDto;
 import com.example.smartcode.dto.get.GetShapeDto;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +18,7 @@ public interface ShapeController {
 
     @PostMapping
     @Secured("ROLE_CREATOR")
-    ResponseEntity<GetShapeDto> create(@RequestBody @Validated CreateShapeDto dto);
+    ResponseEntity<GetShapeDto> create(@RequestBody @Valid CreateShapeDto dto);
 
     @GetMapping
     ResponseEntity<List<GetShapeDto>> getAll(@RequestParam Map<String, String> params);
@@ -29,5 +29,5 @@ public interface ShapeController {
 
     @PutMapping("/{id}")
     @Secured({"ROLE_CREATOR", "ROLE_ADMIN"})
-    ResponseEntity<GetShapeDto> update(@PathVariable("id") UUID id, @RequestBody @Validated PutShapeDto dto);
+    ResponseEntity<GetShapeDto> update(@PathVariable("id") UUID id, @RequestBody @Valid PutShapeDto dto);
 }

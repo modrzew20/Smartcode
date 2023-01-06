@@ -51,7 +51,7 @@ public class RectangleServiceStrategyImpl extends AbstractShapeService implement
 
         Change changeWidth = new Change();
         changeWidth.setParameterName(WIDTH);
-        changeWidth.setParameterNewValue(parameters.get(0));
+        changeWidth.setParameterNewValue(parameters.get(1));
         changeWidth.setParameterOldValue(rectangle.getWidth());
 
         rectangle.setLength(parameters.get(0));
