@@ -6,7 +6,6 @@ import org.springframework.plugin.core.Plugin;
 
 public interface ShapeMapper extends Plugin<String> {
 
-    //todo DRY!!!!!
     GetShapeDto mapShapeToGetShapeDto(Shape shape);
 
 }
