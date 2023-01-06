@@ -57,7 +57,7 @@ public class ShapeControllerImpl implements ShapeController {
 
     @Override
     public ResponseEntity<List<Shape>> getAll(Map<String, String> params) {
-           return ResponseEntity.ok(shapeService.getAll(params));
+        return ResponseEntity.ok(shapeService.getAll(params));
     }
 
     @Override

@@ -1,8 +1,8 @@
 package com.example.smartcode.service.impl;
 
 import com.example.smartcode.dto.CreateUserDto;
-import com.example.smartcode.entity.User;
 import com.example.smartcode.entity.Role;
+import com.example.smartcode.entity.User;
 import com.example.smartcode.exception.LoginIsBusyException;
 import com.example.smartcode.exception.RoleNotFoundException;
 import com.example.smartcode.repository.RoleRepository;
