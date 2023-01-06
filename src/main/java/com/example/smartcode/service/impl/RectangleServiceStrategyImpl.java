@@ -29,7 +29,6 @@ public class RectangleServiceStrategyImpl extends AbstractShapeService implement
         throwsIfNegativeParameters(parameters);
 
         Rectangle rectangle = new Rectangle();
-        rectangle.setType(rectangle.getClass().getSimpleName().toLowerCase());
         rectangle.setLength(parameters.get(0));
         rectangle.setWidth(parameters.get(1));
         return shapeRepository.save(rectangle);

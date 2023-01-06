@@ -1,6 +1,7 @@
 package com.example.smartcode.entity;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,21 +21,26 @@ public class Change {
 
     @Id
     @GeneratedValue
+    @Setter(AccessLevel.NONE)
     private UUID id;
 
     @CreatedDate
+    @Setter(AccessLevel.NONE)
+    @Column(nullable = false, updatable = false)
     private LocalDateTime changedDate;
 
     @CreatedBy
+    @Setter(AccessLevel.NONE)
+    @Column(nullable = false, updatable = false)
     private String changedBy;
 
-    @Column(nullable = false)
+    @Column(nullable = false, updatable = false)
     private String parameterName;
 
-    @Column(nullable = false)
+    @Column(nullable = false, updatable = false)
     private double parameterOldValue;
 
-    @Column(nullable = false)
+    @Column(nullable = false, updatable = false)
     private double parameterNewValue;
 
 }

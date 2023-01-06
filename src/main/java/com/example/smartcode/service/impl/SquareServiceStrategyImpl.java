@@ -27,7 +27,6 @@ public class SquareServiceStrategyImpl extends AbstractShapeService implements S
         throwsIfInvalidAmountOfParameters(parameters, 1);
         throwsIfNegativeParameters(parameters);
         Square square = new Square();
-        square.setType(square.getClass().getSimpleName().toLowerCase());
         square.setWidth(parameters.get(0));
         return shapeRepository.save(square);
     }

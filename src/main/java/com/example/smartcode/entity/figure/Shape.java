@@ -19,39 +19,50 @@ import java.util.List;
 
 @Entity
 @Getter
-@Setter
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 public abstract class Shape extends AbstractEntity {
 
-    @Column(nullable = false)
+    @Setter
+    @Column(nullable = false, updatable = false)
     protected String type;
 
+    @Setter
     @Column(nullable = false)
     protected double area;
 
+    @Setter
     @Column(nullable = false)
     protected double perimeter;
 
     @CreatedBy
+    @Column(nullable = false, updatable = false)
     private String createdBy;
 
     @CreatedDate
+    @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @LastModifiedBy
+    @Column(nullable = false)
     private String lastModifiedBy;
 
     @LastModifiedDate
+    @Column(nullable = false)
     private LocalDateTime lastModifiedAt;
 
     @OneToMany
-    @Setter(AccessLevel.NONE)
     List<Change> changes = new ArrayList<>();
 
     @PrePersist
+    public void prePersist() {
+        setType(getClass().getSimpleName().toLowerCase());
+        setArea(calculateArea());
+        setPerimeter(calculatePerimeter());
+    }
+
     @PreUpdate
-    private void setAreaAndPerimeter() {
+    private void preUpdate() {
         setArea(calculateArea());
         setPerimeter(calculatePerimeter());
     }

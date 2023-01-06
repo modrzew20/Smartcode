@@ -29,7 +29,6 @@ public class CircleServiceStrategyImpl extends AbstractShapeService implements S
         throwsIfNegativeParameters(parameters);
 
         Circle circle = new Circle();
-        circle.setType(circle.getClass().getSimpleName().toLowerCase());
         circle.setRadius(parameters.get(0));
         return shapeRepository.save(circle);
     }
